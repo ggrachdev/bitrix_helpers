@@ -8,7 +8,7 @@
 class IBlockHelper {
 
     // Получить данные об инфоблоке
-    public static function getIblockDataById(int $iblockId, Array $select = ['ID', 'CODE']) {
+    public static function getIblockDataById(int $iblockId, array $select = ['ID', 'CODE']) {
 
         self::includeIblockModule();
 
@@ -22,7 +22,7 @@ class IBlockHelper {
     }
 
     // Получить элементы инфоблока
-    public static function getIblockElements(int $iblockId, Array $select = ['ID', 'CODE'], Array $filter = Array("ACTIVE" => "Y")) {
+    public static function getIblockElements(int $iblockId, array $select = ['ID', 'CODE'], array $filter = ["ACTIVE" => "Y"]) {
 
         $arReturn = [];
 
@@ -32,7 +32,7 @@ class IBlockHelper {
 
             $arFilter = $filter;
             $arSelect = $select;
-            $res = \CIBlockElement::GetList(Array(), $arFilter, false, Array(), $arSelect);
+            $res = \CIBlockElement::GetList([], $arFilter, false, [], $arSelect);
 
             while ($ob = $res->fetch()) {
                 $arReturn[] = $ob;
@@ -43,7 +43,7 @@ class IBlockHelper {
     }
 
     // Получить секции инфоблока
-    public static function getIblockSections(int $iblockId, Array $select = ['ID', 'CODE'], Array $filter = Array("ACTIVE" => "Y")) {
+    public static function getIblockSections(int $iblockId, array $select = ['ID', 'CODE'], array $filter = ["ACTIVE" => "Y"]) {
         $arReturn = [];
 
         $filter['IBLOCK_ID'] = $iblockId;
@@ -52,7 +52,7 @@ class IBlockHelper {
 
             $arFilter = $filter;
             $arSelect = $select;
-            $res = \CIBlockSection::GetList(Array(), $arFilter, false, $arSelect, Array());
+            $res = \CIBlockSection::GetList([], $arFilter, false, $arSelect, []);
 
             while ($ob = $res->fetch()) {
                 $arReturn[] = $ob;
@@ -63,7 +63,7 @@ class IBlockHelper {
     }
 
     // Получить данные элемента инфоблока
-    public static function getIblockElement(int $iblockId, $elemId, Array $select = ['ID', 'CODE'], Array $filter = ["ACTIVE" => "Y"]) {
+    public static function getIblockElement(int $iblockId, $elemId, array $select = ['ID', 'CODE'], array $filter = ["ACTIVE" => "Y"]) {
 
         $arReturn = [];
 
@@ -78,7 +78,7 @@ class IBlockHelper {
 
             $arFilter = $filter;
             $arSelect = $select;
-            $res = \CIBlockElement::GetList(Array(), $arFilter, false, Array(), $arSelect);
+            $res = \CIBlockElement::GetList([], $arFilter, false, [], $arSelect);
 
             while ($ob = $res->fetch()) {
                 $arReturn[] = $ob;
@@ -89,11 +89,12 @@ class IBlockHelper {
     }
 
     /**
-     * @throws LoaderException
+     * @throws Exception
      */
     private static function includeModules() {
-        if (!Loader::includeModule('iblock'))
+        if (!Loader::includeModule('iblock')) {
             throw new Exception('Not found modules');
+        }
     }
 
 }
