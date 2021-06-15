@@ -1,10 +1,7 @@
 <?php
 
-/**
- * Description of IBlockHelper
- *
- * @author ggrachdev
- */
+namespace Fred\Bitrix\Helper\IBlock;
+
 class IBlockHelper {
 
     // Получить данные об инфоблоке
